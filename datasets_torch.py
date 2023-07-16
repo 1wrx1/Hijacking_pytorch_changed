@@ -1,4 +1,4 @@
-import tensorflow as tf
+#import tensorflow as tf
 import numpy as np
 import tqdm
 import torch.nn.functional as F
@@ -9,7 +9,7 @@ import torch
 import torchvision.transforms as transforms
 import torchvision.datasets as datasets
 from torch.utils.data import TensorDataset
-from scipy.misc import imresize
+#from scipy.misc import imresize
 BUFFER_SIZE = 10000
 SIZE = 32
 
@@ -22,26 +22,26 @@ def getImagesDS(X, n):
         image_list.append(X[i][0].numpy()[None,])
     return np.concatenate(image_list)
 
-def parse(x):
+'''def parse(x):
     x = x[:,:,None]
     x = tf.tile(x, (1,1,3))    
     x = tf.image.resize(x, (SIZE, SIZE))
     x = x / (255/2) - 1
     x = tf.clip_by_value(x, -1., 1.)
-    return x
+    return x'''
 
-def parseC(x):
+'''def parseC(x):
     x = x / (255/2) - 1
     x = tf.clip_by_value(x, -1., 1.)
-    return x
+    return x'''
 
-def make_dataset(X, Y, f):
+'''def make_dataset(X, Y, f):
     x = tf.data.Dataset.from_tensor_slices(X)
     y = tf.data.Dataset.from_tensor_slices(Y)
     x = x.map(f)
     xy = tf.data.Dataset.zip((x, y))
     xy = xy.shuffle(BUFFER_SIZE)
-    return xy
+    return xy'''
 
 
 def load_mnist():

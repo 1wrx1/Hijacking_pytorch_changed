@@ -143,7 +143,7 @@ class FSHA:
             # map to data space (for evaluation and style loss)
             rec_x_private = self.decoder(z_private)
             loss_c_verification = distance_data(x_private, rec_x_private)
-            losses_c_verification = loss_c_verification.detach()
+            losses_c_verification = loss_c_verification.detach().cpu()
             del rec_x_private, loss_c_verification
 
         self.optimizer0.zero_grad()
@@ -167,9 +167,9 @@ class FSHA:
         
         self.optimizer2.step()
 
-        f_losses = f_loss.detach()
-        tilde_f_losses = tilde_f_loss.detach()
-        D_losses = D_loss.detach()
+        f_losses = f_loss.detach().cpu()
+        tilde_f_losses = tilde_f_loss.detach().cpu()
+        D_losses = D_loss.detach().cpu()
         
 
         del f_loss, tilde_f_loss, D_loss
